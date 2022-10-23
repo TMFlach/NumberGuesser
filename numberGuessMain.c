@@ -7,10 +7,19 @@ void playGame(int max);
 //create main function to handle menu
 int main() {
     int selection = 0;
+    int maxNum = 10;
     while (selection != 3) {
-        printMenu(10);
+        printMenu(maxNum);
         scanf("%d", &selection);
-        printf("You selected %d\n", selection);
+        if(selection == 1) {
+            //play game selected
+        } else if(selection == 2) {
+            //change max number selected.
+            printf("Change max number to:\n");
+            scanf("%d", &maxNum);
+        } else if (selection != 3){
+            printf("Invalid Selection.");
+        }
     }
 }
 //create function to display menu

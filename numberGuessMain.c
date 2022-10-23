@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 void printMenu(int max);
@@ -13,6 +14,7 @@ int main() {
         scanf("%d", &selection);
         if(selection == 1) {
             //play game selected
+            playGame(maxNum);
         } else if(selection == 2) {
             //change max number selected.
             printf("Change max number to:\n");
@@ -30,3 +32,24 @@ void printMenu(int max) {
     printf("3: quit\n");
 }
 //create function for starting the number guessing game.
+void playGame(int max) {
+    char guess[10];
+    time_t t;
+    srand((unsigned) time(&t));
+    int randomInt = rand() % max;
+    printf("Enter your guess:\n");
+    scanf(" %s", guess);
+    while(strcmp(guess, "q") != 0) {
+        int bestGuess = atoi(guess);
+        if(bestGuess == randomInt) {
+            printf("Congratulations! You Win!\n");
+            return;
+        } else if(bestGuess < randomInt) {
+            printf("Too low. ");
+        } else if(bestGuess > randomInt) {
+            printf("Too high. ");
+        }
+        printf("Enter your guess:\n");
+        scanf(" %s", guess);
+    }
+}
